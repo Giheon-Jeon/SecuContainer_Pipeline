@@ -1,0 +1,33 @@
+# Phase 3: Hardened Dockerfile
+# Stage 1: Build stage
+FROM maven:3.8.4-openjdk-11-slim AS build
+WORKDIR /app
+COPY pom.xml .
+# Download dependencies first (caching)
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Stage 2: Runtime stage
+# Use Google Distroless for minimal attack surface
+# It contains only the application and its runtime dependencies
+FROM gcr.io/distroless/java:11
+
+# Maintainer info
+LABEL maintainer="electric-heon"
+
+# Set working directory
+WORKDIR /app
+
+# Copy only the artifact from build stage
+COPY --from=build /app/target/vulnerable-app-0.0.1-SNAPSHOT.jar app.jar
+
+# Run as non-root user
+# Distroless java image already has a 'nonroot' user (UID 65532)
+USER 65532
+
+# Expose port
+EXPOSE 8080
+
+# Entry point
+ENTRYPOINT ["java", "-jar", "app.jar"]

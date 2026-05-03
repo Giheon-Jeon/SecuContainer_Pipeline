@@ -1,14 +1,13 @@
-# [프로젝트 명칭을 입력하세요]
-## [프로젝트 한 줄 설명을 입력하세요]
+# SecuContainer_Pipeline
+## 컨테이너 공급망 보안을 위한 하드닝 파이프라인 구축 프로젝트
 
 <p align="center">
-  <!-- 로고 이미지가 있다면 주소를 넣으시고, 없다면 이 주석을 삭제하세요 -->
-  <img width="170" height="170" alt="project_logo" src="[이미지 주소]" />
+  <img width="170" height="170" alt="project_logo" src="https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/imgs/trivy-logo.png" />
 </p>
 
 <p align="center">
-  <strong>[소속 또는 팀 명칭]</strong><br>
-  [간단한 프로젝트 슬로건]
+  <strong>SecuContainer Team</strong><br>
+  보안이 내재화된 안전한 컨테이너 이미지를 만듭니다.
 </p>
 
 ---
@@ -23,67 +22,63 @@
 ---
 
 ## ✨ 주요 기능
-1. **[핵심 기능 1]**: [기능에 대한 간단한 설명을 작성하세요]
-2. **[핵심 기능 2]**: [기능에 대한 간단한 설명을 작성하세요]
-3. **[핵심 기능 3]**: [기능에 대한 간단한 설명을 작성하세요]
-4. **[핵심 기능 4]**: [기능에 대한 간단한 설명을 작성하세요]
+1. **취약한 베이스라인 구축**: 취약점이 포함된 레거시 환경을 구축하여 하드닝 효과를 대조합니다.
+2. **CI/CD 통합 자동 진단**: Trivy를 활용하여 빌드 시점에 취약점을 자동으로 식별하고 차단합니다.
+3. **이미지 하드닝 적용**: Distroless/Alpine 적용 및 Non-root 설정을 통한 공격 표면 최소화.
+4. **런타임 보안 검증**: CIS Benchmark 및 시크릿 관리 검증을 통한 배포 환경 안정성 확보.
+5. **보안 리포트 자동 생성**: 하드닝 성과를 가시화하는 PDF/HTML 리포트를 자동 생성합니다.
 
 ---
 
 ## 🛠 기술 스택 및 선정 이유
 
 ### Frontend / Backend
-<!-- 사용 중인 기술의 배지를 삽입하세요 (https://shields.io/ 이용) -->
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 
-- **[기술명]**: [선정 이유를 간략하게 작성하세요]
-- **[기술명]**: [선정 이유를 간략하게 작성하세요]
+- **Java/Spring Boot**: 엔터프라이즈 환경에서 가장 널리 사용되는 스택으로, 공급망 보안의 중요성이 큽니다.
 
-### 인프라 및 환경 설정
-![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
-![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)
+### 인프라 및 보안
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Trivy](https://img.shields.io/badge/Trivy-000000?style=for-the-badge&logo=trivy&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+- **Trivy**: 컨테이너 이미지의 OS 패키지 및 라이브러리 취약점(CVE) 스캔에 최적화된 도구입니다.
+- **Python**: 스캔 결과 파싱 및 리포트 생성을 위한 유연한 스크립팅 언어입니다.
 
 ---
 
 ## 🏗 아키텍처 및 폴더 구조
 유지보수성과 확장성을 고려한 **기능 단위(Feature-based) 구조** 채택
 ```text
-├── 📁 app/                   # Next.js App Router 또는 메인 로직
-├── 📁 components/            # 재사용 가능한 UI 컴포넌트
-├── 📁 constants/             # 전역 상수 및 설정 파일
-├── 📁 contexts/              # 상태 관리를 위한 Context/Provider
-├── 📁 hooks/                 # 비즈니스 로직 분리를 위한 Custom Hooks
-├── 📁 lib/                   # 외부 API 통신 및 라이브러리 설정
-├── 📁 styles/                # 글로벌 스타일 및 테마 설정
-└── 📁 types/                 # 공통 타입 및 인터페이스 정의
+├── 📁 .github/               # CI/CD 워크플로우 (Actions)
+├── 📁 vulnerable-app/        # 취약한 베이스라인 앱 및 Dockerfile
+├── 📁 hardened-app/          # 보안 강화가 적용된 앱 (예정)
+├── 📁 scripts/               # 스캔 파서 및 자동화 스크립트
+├── 📁 reports/               # 생성된 보안 리포트 저장소
+└── 📁 docs/                  # 프로젝트 관련 문서
 ```
 
 <br>
 
 ## 🤝 협업 및 자동화 규칙
 
-- `Git Flow`: main → develop → feature/기능명 브랜치 전략
-
-- `Commit Convention`: Conventional Commits 규칙 (feat:, fix:, refactor:, chore: 등)
-
-- `Pull Request`: feature → develop로 PR, 최소 1명 이상 승인 후 머지
+- `Git Flow`: main → BE-전기헌-(번호) 브랜치 전략
+- `Commit Convention`: `{emoji} {tag}: {message} 구현` 형식 준수
+- `Security First`: 모든 커밋 전 보안 검사 및 테스트 수행
 
 <br>
 
 ## 🤖 AI 활용 방식
-
-텍스트 입력
-
+**Antigravity (Google Deepmind)**를 활용한 페어 프로그래밍
 
 **처리 과정:**
-
-1. 텍스트 1
-2. 텍스트 2
-3. 텍스트 3
+1. 요구사항 분석 및 아키텍처 설계
+2. 단계별 하드닝 코드 및 스크립트 구현
+3. 취약점 분석 및 개선 리포트 생성
 
 **기술 스택:**
-
-- 텍스트 1
-- 텍스트 2
-- 텍스트 3
+- Gemini 2.0 Flash
+- GitHub Actions Integration
+- Python Data Processing
