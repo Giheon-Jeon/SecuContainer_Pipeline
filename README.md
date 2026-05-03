@@ -2,7 +2,7 @@
 ### 컨테이너 공급망 보안을 위한 하드닝 파이프라인 (Container Supply Chain Security Hardening)
 
 <p align="center">
-  <img width="200" height="200" alt="project_logo" src="https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/imgs/trivy-logo.png" />
+  <img width="200" height="200" alt="project_logo" src="./main_logo.png" />
 </p>
 
 <p align="center">
